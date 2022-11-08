@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 import argparse
 
 parser = argparse.ArgumentParser(description='')
@@ -188,10 +189,11 @@ def generate_output_line(taxonomy, otu):
     if all(rank == "no identification" for rank in taxonomy):
         return otu[0][0] + "\tno identification\tno identification\t" + "\t".join(taxonomy).strip() + "\tno lca"
     else:
-        if taxonLevel == 6:
-            taxonomy[-1] = ""
-            return otu[0][0] + "\t" + taxonLevels[taxonLevel-1] + "\t" + taxonomy[taxonLevel-1] + "\t" + "\t".join(taxonomy).strip()+"\tno identification\tlca"
-        else:
+## COMMENT OUT FOLLOWING FOUR LINES FOR SPECIES-LEVEL LCA ##
+##        if taxonLevel == 6:
+##            taxonomy[-1] = ""
+##            return otu[0][0] + "\t" + taxonLevels[taxonLevel-1] + "\t" + taxonomy[taxonLevel-1] + "\t" + "\t".join(taxonomy).strip()+"\tno identification\tlca"
+##        else:
             return otu[0][0] + "\t" + taxonLevels[taxonLevel] + "\t" + taxonomy[taxonLevel] + "\t" + "\t".join(taxonomy) + "\tlca"
 
 def get_lca(otu):
